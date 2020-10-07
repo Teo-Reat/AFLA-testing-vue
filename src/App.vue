@@ -28,4 +28,6 @@ export default {
 #app {
   font-family: BebasNeue-Regular, sans-serif;
 }
+
+@import "./style/style.css";
 </style>
