@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <license></license>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import License from "@/components/License";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    License
   }
 }
 </script>
 
 <style lang="scss">
+
+@font-face {
+  font-family: "BebasNeue-Regular";
+  src: url("./assets/fonts/BebasNeue-Regular.woff") format("woff"), /* Modern Browsers */
+  url("./assets/fonts/BebasNeue-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: BebasNeue-Regular, sans-serif;
 }
 </style>
