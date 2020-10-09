@@ -2,12 +2,13 @@
 
   <div class="form__radio-wrapper">
 
-    <input :id="'radio-'+license.id"
-           type="radio"
-           name="radio"
-           :value="license.id"
-           :checked="license.id===1"
-           @click="$emit('input',license.id)">
+    <input
+        type="radio"
+        name="radio"
+        @click="$emit('active', licenkey)"
+        :value="license.id"
+        :id="'radio-'+license.id"
+        :checked="licenkey === 0">
 
     <label :for="'radio-'+license.id">
 
@@ -33,7 +34,20 @@ export default {
       type: Object,
       required: true
     },
+    licenkey: {
+      type: Number,
+      required: true
+    }
   },
+  data() {
+    return {
+      active: 0
+    }
+  },
+
+  methods: {
+
+  }
 }
 </script>
 

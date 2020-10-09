@@ -1,11 +1,23 @@
 <template>
   <section class="license">
-    <form action="" class="license__form form">
+    <form class="license__form" @submit.prevent="modal = true">
 
-      <license-item :license="license"
-                    v-model="active"
-                    v-for="license in licenseItems"
-                    :key="license.id"/>
+      <modal
+          v-show="modal"
+          @close-modal="modal = false"
+          :quantity="quantity"
+          :license="licenseItems[active].id">
+      </modal>
+
+      <license-item
+          v-for="(license, key) in licenseItems"
+          @active="setActive"
+          :class="{ active: active === key }"
+          :licenkey="key"
+          :license="license">
+        {{ license }} {{ key }}
+      </license-item>
+
       <div class="form__select-wrapper">
 
         <label for="quantity">
@@ -19,15 +31,14 @@
         </select>
 
       </div>
-
       <div class="form__total-wrapper">
 
-        <div class="form__total">TOTAL: <span class="form__total-sum">${{ getSum }}</span></div>
+        <div class="form__total">TOTAL: <span class="form__total-sum">$ {{ price }}</span></div>
 
         <button class="form__submit" type="submit">Buy now</button>
 
         <div class="form__selected">
-          Selected plan: #{{ active }}
+          Selected plan: {{ licenseItems[active].id }}
         </div>
       </div>
 
@@ -37,32 +48,35 @@
 
 <script>
 import LicenseItem from "@/components/LicenseItem";
+import Modal from "@/components/Modal";
 
 export default {
   components: {
-    LicenseItem
+    LicenseItem,
+    Modal
   },
   data() {
     return {
       licenseItems: [
         {id: 1, price: 13},
-        {id: 2, price: 22},
-        {id: 3, price: 34}
+        {id: 5, price: 22},
+        {id: 42, price: 34}
       ],
-      active: 1,
-      quantity: 1
+      active: 0,
+      quantity: 1,
+      modal: false
     }
   },
-  computed: {
-    getSum() {
-      return this.price * this.quantity
+
+  methods: {
+    setActive(payload) {
+      this.active = payload
     },
+  },
+
+  computed: {
     price() {
-      const license = this.licenseItems.find(license=>license.id === this.active)
-      if(license){
-        return license.price;
-      }
-      return 0;
+      return this.licenseItems[this.active].price * this.quantity
     }
   }
 }

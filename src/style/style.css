@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 30px auto;
     padding: 20px 10px;
+    position: relative;
 }
 
 .form__select-wrapper {
@@ -33,6 +34,7 @@
 .form__select-description {
     font-size: 12px;
     margin-right: 10px;
+    font-family: sans-serif;
 }
 
 .form__total {
@@ -74,6 +76,7 @@
 .form__selected {
     color: #0294BF;
     margin-top: 30px;
+    font-family: sans-serif;
 }
 
 .form__radio-wrapper {
@@ -147,4 +150,41 @@
 .active {
     background: #EBF4F7;
     border: 1px solid #BCD9E3;
+}
+
+.modal__overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 3;
+}
+
+.modal__wrapper {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+    background: #EBF4F7;
+    border: 1px solid #BCD9E3;
+    z-index: 5;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    top: 40%;
+}
+
+.modal__license {
+    margin-top: 5px;
+}
+
+.modal__license,
+.modal__quantity {
+    display: block;
+}
+
+.modal__close {
+    margin: 10px auto 0;
+    display: block;
 }
