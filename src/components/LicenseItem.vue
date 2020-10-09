@@ -1,14 +1,13 @@
 <template>
 
-  <div class="form__radio-wrapper">
+  <div class="form__radio-wrapper" :class="{ active: license.id === active}">
 
     <input
         type="radio"
-        name="radio"
-        @click="$emit('active', licenkey)"
+        @click="$emit('active', license.id)"
         :value="license.id"
-        :id="'radio-'+license.id"
-        :checked="licenkey === 0">
+        :checked="license.id === active"
+        :id="'radio-'+license.id">
 
     <label :for="'radio-'+license.id">
 
@@ -34,14 +33,14 @@ export default {
       type: Object,
       required: true
     },
-    licenkey: {
+    active: {
       type: Number,
       required: true
-    }
+    },
   },
   data() {
     return {
-      active: 0
+      // active: 0
     }
   },
 

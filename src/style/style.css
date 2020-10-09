@@ -65,12 +65,17 @@
 
 .form__submit {
     background: #33A845;
-    padding: 10px 35px;
+    padding: 15px 35px;
     border: none;
-    border-radius: 17px;
+    border-radius: 25px;
     color: white;
     text-transform: uppercase;
     margin-top: 15px;
+    outline: none;
+}
+
+.form__submit[disabled] {
+    background: #969696;
 }
 
 .form__selected {

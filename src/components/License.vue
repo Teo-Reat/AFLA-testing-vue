@@ -2,20 +2,18 @@
   <section class="license">
     <form class="license__form" @submit.prevent="modal = true">
 
-      <modal
-          v-show="modal"
-          @close-modal="modal = false"
-          :quantity="quantity"
-          :license="licenseItems[active].id">
-      </modal>
+            <modal
+                v-show="modal"
+                @close-modal="modal = false"
+                :quantity="quantity"
+                :license="active">
+            </modal>
 
       <license-item
           v-for="(license, key) in licenseItems"
           @active="setActive"
-          :class="{ active: active === key }"
-          :licenkey="key"
+          :active="active"
           :license="license">
-        {{ license }} {{ key }}
       </license-item>
 
       <div class="form__select-wrapper">
@@ -35,10 +33,10 @@
 
         <div class="form__total">TOTAL: <span class="form__total-sum">$ {{ price }}</span></div>
 
-        <button class="form__submit" type="submit">Buy now</button>
+        <button class="form__submit" type="submit" :disabled="active === 0">Buy now</button>
 
         <div class="form__selected">
-          Selected plan: {{ licenseItems[active].id }}
+          Selected plan: {{ active }}
         </div>
       </div>
 
@@ -76,7 +74,11 @@ export default {
 
   computed: {
     price() {
-      return this.licenseItems[this.active].price * this.quantity
+      const license = this.licenseItems.find(l => l.id === this.active)
+      if (license) {
+        return license.price * this.quantity;
+      }
+      return 0;
     }
   }
 }
